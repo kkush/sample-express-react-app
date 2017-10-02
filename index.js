@@ -1,17 +1,17 @@
-const express = require('express');
-const authRoutes = require('./routes/authRoutes');
-const mongoose = require('mongoose');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
+const express = require('express')
+const authRoutes = require('./routes/authRoutes')
+const mongoose = require('mongoose')
+const cookieSession = require('cookie-session')
+const passport = require('passport')
 const bodyParser = require('body-parser')
-const keys = require('./config/keys');
-const path = requie('path')
-require('./models/user');
-require('./services/passport');
+const keys = require('./config/keys')
+const path = require('path')
+require('./models/user')
+require('./services/passport')
 
 console.log(keys.mongoURI)
-mongoose.connect(keys.mongoURI);
-const app = express();
+mongoose.connect(keys.mongoURI)
+const app = express()
 
 app.use(bodyParser.json())
 
@@ -22,11 +22,11 @@ app.use(
     })
 )
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 
-authRoutes(app);
+authRoutes(app)
 require('./routes/billingRoutes')(app)
 
 // require('./routes/authRoutes')(app) // alternative way to do it
@@ -40,6 +40,6 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000
 
-app.listen(PORT);
+app.listen(PORT)
